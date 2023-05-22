@@ -15,7 +15,8 @@ Dim badge, carnetdebord, macaron
 Dim lowerbound, upperbound
 Dim myheliconom(1 To 100) As String
 Dim myhelicoimage(1 To 100) As String
-
+Dim chemabs
+chemabs = Sheets("le_cheminabsolu").Range("I10")
 
 
 'x = Int((upperbound - lowerbound + 1) * Rnd + lowerbound)
@@ -54,7 +55,7 @@ With img
 .PictureSizeMode = fmPictureSizeModeStretch
 .Width = 200
 .Height = imgheight
-.Picture = LoadPicture("D:\Profils\goudon.marie\Bureau\mesvehicules\" & img_str)
+.Picture = LoadPicture(chemabs & img_str)
 .ControlTipText = nom_str
 .Top = 0
 .Tag = "helico"
@@ -63,6 +64,8 @@ End With
 End Sub
 Sub vehicules()
 On Error GoTo erreur
+Dim chemabs
+chemabs = Sheets("le_cheminabsolu").Range("I10")
 Dim section(1 To 9)   As String
 Dim MyValue As Integer
 section(1) = "E"
@@ -114,7 +117,7 @@ Debug.Print imstr & " = image"
 img_str = Replace(Replace(Replace(Replace(imstr, "%20", " "), "%C3%A0", "à"), "-de-petite-capacite", ""), "%C3%A8", "è")
 nom_str = Worksheets("grades").Range("B" & x)
 Debug.Print nom_str & "= nom"
-Debug.Print "D:\Profils\goudon.marie\Bureau\mesvehicules\" & img_str
+Debug.Print chemabs & img_str
 Dim imgheight As Integer
 imgheight = 150
 Debug.Print imgheight & " = image height"
@@ -126,7 +129,7 @@ With img
 .PictureSizeMode = fmPictureSizeModeStretch
 .Width = 200
 .Height = imgheight
-.Picture = LoadPicture("D:\Profils\goudon.marie\Bureau\mesvehicules\" & img_str)
+.Picture = LoadPicture(chemabs & img_str)
 .ControlTipText = nom_str
 .Top = UserForm1.Height - imgheight
 .Tag = "vehicule"
@@ -222,6 +225,8 @@ End Sub
 Sub shoot()
 Dim x As Integer, y As Integer
 Dim muniton As MSForms.Image
+Dim chemabs
+chemabs = Sheets("le_cheminabsolu").Range("I10")
 Dim Vehicle(1 To 100) As MSForms.Image, helico(1 To 100) As Control, a As Control
 Dim upperbound, lowerbound, value
 upperbound = 20
@@ -264,7 +269,7 @@ imstr = Worksheets("armes").Range("B" & w)
 vehiculename = Replace(Replace(Replace(Replace(imstr, "%20", " "), "%C3%A0", "à"), "-de-petite-capacite", ""), "%C3%A8", "è")
 Set j = UserForm1.Controls.Add("forms.image.1")
 With j
-.Picture = LoadPicture("D:\Profils\goudon.marie\Bureau\mesvehicules\" & vehiculename)
+.Picture = LoadPicture(chemabs & vehiculename)
 .PictureSizeMode = fmPictureSizeModeStretch
 .Left = monvehicule.Left - 40
 .Width = 80
@@ -286,7 +291,7 @@ If nbmunition = 0 Then
 
 Set munition = UserForm1.Controls.Add("forms.image.1")
 With munition
-.Picture = LoadPicture("D:\Profils\goudon.marie\Bureau\mesvehicules\munition.jpg")
+.Picture = LoadPicture(chemabs & "munition.jpg")
 .PictureSizeMode = fmPictureSizeModeStretch
 
 End With
@@ -306,6 +311,8 @@ Application.OnTime Now + TimeValue("0:0:" & value), "shoot"
 End Sub
 
 Sub helico1()
+Dim chemabs
+chemabs = Sheets("le_cheminabsolu").Range("I10")
 Dim x As Integer, y As Integer
 Dim muniton As MSForms.Image
 Dim Vehicle(1 To 100) As MSForms.Image, helico(1 To 100) As Control, a As Control
@@ -353,7 +360,7 @@ imstr = Worksheets("armes").Range("B" & w)
 vehiculename = Replace(Replace(Replace(Replace(imstr, "%20", " "), "%C3%A0", "à"), "-de-petite-capacite", ""), "%C3%A8", "è")
 Set j = UserForm1.Controls.Add("forms.image.1")
 With j
-.Picture = LoadPicture("D:\Profils\goudon.marie\Bureau\mesvehicules\" & vehiculename)
+.Picture = LoadPicture(chemabs & vehiculename)
 .PictureSizeMode = fmPictureSizeModeStretch
 .Left = monvehicule.Left - 40
 .Width = 80
@@ -362,7 +369,7 @@ With j
 End With
 Set munition = UserForm1.Controls.Add("forms.image.1")
 With munition
-.Picture = LoadPicture("D:\Profils\goudon.marie\Bureau\mesvehicules\parachute.jpg")
+.Picture = LoadPicture(chemabs & "parachute.jpg")
 .PictureSizeMode = fmPictureSizeModeStretch
 
 End With
